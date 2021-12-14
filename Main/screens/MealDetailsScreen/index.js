@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-const CategoryMealsScreen = () => {
+const MealDetailsScreen = ({ navigation }) => {
     return (
         <View>
-            <Text>CategoryMealsScreen</Text>
+            <Text>MealDetailScreen</Text>
         </View>
     );
 }
 
-export default CategoryMealsScreen;
+export default MealDetailsScreen;

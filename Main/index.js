@@ -1,11 +1,10 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import MealsNavigator from './navigation/MealsNavigator';
+
 
 const Main = () => {
     return (
-        <View>
-            <Text> Meal App </Text>
-        </View>
+        <MealsNavigator />
     );
 }
 
