@@ -21,7 +21,7 @@ const CategoryButton = ({ text, backgroundColor, navigation }) => {
     return (
         <TouchableOpacity
             style={{ ...styles.gridItem, backgroundColor: backgroundColor }}
-            onPress={() => navigation.navigate({routeName: 'CategoryMeals', params : params})}>
+            onPress={() => navigation.navigate({ routeName: 'CategoryMeals', params: { title: text, color: backgroundColor } })}>
             <Text style={styles.categoryText}>
                 {text}
             </Text>
