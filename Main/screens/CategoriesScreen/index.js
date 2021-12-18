@@ -12,11 +12,12 @@ const CategoriesScreen = ({ navigation }) => {
             <FlatList
                 data={CATEGORIES}
                 numColumns={2}
-                renderItem={({ item }) =>
-                    <CategoryButton
+                renderItem={({ item }) =>{
+                    return <CategoryButton
                         text={item.title}
+                        catId={item.id}
                         backgroundColor={item.color}
-                        navigation={navigation} />} />
+                        navigation={navigation} />}} />
 
         </View>
     );

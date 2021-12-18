@@ -23,11 +23,11 @@ const styles = StyleSheet.create({
     }
 });
 
-const CategoryButton = ({ text, backgroundColor, navigation }) => {
+const CategoryButton = ({ text, backgroundColor, navigation, catId }) => {
     return (
         <TouchableOpacity
             style={{ ...styles.gridItem, backgroundColor: backgroundColor }}
-            onPress={() => navigation.navigate({ routeName: 'CategoryMeals', params: { title: text, color: backgroundColor } })}>
+            onPress={() => navigation.navigate({ routeName: 'CategoryMeals', params: { title: text, catId: catId, color: backgroundColor } })}>
             <Text style={styles.categoryText} numberOfLines={2}>
                 {text}
             </Text>
