@@ -6,14 +6,20 @@ const styles = StyleSheet.create({
         flex: 1,
         margin: 15,
         height: 150,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderColor: '#000',
-        borderWidth: 1,
         borderRadius: 20,
+        shadowColor: '#000',
+        shadowOpacity: 0.26,
+        shadowOffset: {width: 0, height: 2},
+        shadowRadius: 10,
+        elevation: 5,
+        padding: 20,
+        alignItems: 'flex-end',
+        justifyContent: 'flex-end',
     },
     categoryText: {
         fontFamily: 'Lato-Bold',
+        fontSize: 21,
+        textAlign: 'right',
     }
 });
 
@@ -22,7 +28,7 @@ const CategoryButton = ({ text, backgroundColor, navigation }) => {
         <TouchableOpacity
             style={{ ...styles.gridItem, backgroundColor: backgroundColor }}
             onPress={() => navigation.navigate({ routeName: 'CategoryMeals', params: { title: text, color: backgroundColor } })}>
-            <Text style={styles.categoryText}>
+            <Text style={styles.categoryText} numberOfLines={2}>
                 {text}
             </Text>
         </TouchableOpacity>
