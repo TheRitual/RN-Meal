@@ -9,8 +9,10 @@ import MealButton from './MealButton';
 const styles = StyleSheet.create({
     title: {
         fontSize: 30,
+        textAlign: 'center',
+        textAlignVertical: 'center',
         fontFamily: 'Lato-Bold',
-        padding: 20,
+        padding: 0,
         flex: 1,
     },
     list: {

@@ -15,10 +15,10 @@ const styles = StyleSheet.create({
         backgroundColor: colorAlpha('#000', 0.4),
     },
     details: {
-        fontSize: 16,
+        fontSize: 14,
         fontFamily: "Lato",
         color: '#111',
-        textShadowColor: '#FFF',
+        textShadowColor: '#333',
         textShadowRadius: 1,
         margin: 0,
         textAlignVertical: 'center',
@@ -35,12 +35,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     mealHeader: {
-        flex: 8,
+        flex: 10,
         backgroundColor: '#000',
     },
     mealDetail: {
         flex: 2,
-        paddingHorizontal: 15,
+        paddingHorizontal: 20,
         justifyContent: 'space-between',
     },
     bgImage: {
