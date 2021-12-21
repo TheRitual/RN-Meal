@@ -26,7 +26,7 @@ const CategoryMealsScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Category - {title}</Text>
-            <FlatList data={displayedMeals} renderItem={({ item }) => <MealButton data={item} />} />
+            <FlatList data={displayedMeals} renderItem={({ item }) => <MealButton data={item} color={navigation.getParam('color')} />} />
             <Button title='Go to Meal Details' onPress={() => navigation.navigate('MealDetails')} />
             <Button title='Go Back' onPress={() => navigation.goBack()} />
         </View>
