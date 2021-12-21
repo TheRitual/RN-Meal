@@ -11,8 +11,17 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontFamily: 'Lato-Bold',
         padding: 20,
+        flex: 1,
+    },
+    list: {
+        flex: 8,
+    },
+    buttons: {
+        flexDirection: 'row',
+        flex: 1,
     },
     container: {
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     }
@@ -27,9 +36,12 @@ const CategoryMealsScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Category - {title}</Text>
-            <FlatList data={displayedMeals} renderItem={({ item }) => <MealButton data={item} color={navigation.getParam('color')} />} />
-            <CustomButton title='Go to Meal Details' onPress={() => navigation.navigate('MealDetails')} style={styles.button} />
-            <CustomButton title='Go Back' onPress={() => navigation.goBack()} style={styles.button} />
+            <View style={styles.list}>
+                <FlatList data={displayedMeals} renderItem={({ item }) => <MealButton data={item} navigation={navigation} color={navigation.getParam('color')} />} />
+            </View>
+            <View style={styles.buttons}>
+                <CustomButton title='Go Back' onPress={() => navigation.goBack()} style={styles.button} />
+            </View>
         </View>
     );
 }

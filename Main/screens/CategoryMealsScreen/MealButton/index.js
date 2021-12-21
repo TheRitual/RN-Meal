@@ -10,7 +10,8 @@ const styles = StyleSheet.create({
         color: '#fff',
         textShadowColor: colorAlpha('#fff', 0.5),
         textShadowRadius: 10,
-        padding: 5,
+        paddingHorizontal: 15,
+        paddingVertical: 15,
         backgroundColor: colorAlpha('#000', 0.4),
     },
     details: {
@@ -23,23 +24,23 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center',
     },
     container: {
-        padding: 15,
+        padding: 0,
         margin: '2%',
         borderRadius: 20,
         height: 200,
         width: '96%',
+        overflow: 'hidden',
     },
     mealRow: {
         flexDirection: 'row',
     },
     mealHeader: {
         flex: 8,
-        borderRadius: 10,
-        overflow: 'hidden',
         backgroundColor: '#000',
     },
     mealDetail: {
         flex: 2,
+        paddingHorizontal: 15,
         justifyContent: 'space-between',
     },
     bgImage: {
@@ -48,11 +49,11 @@ const styles = StyleSheet.create({
     }
 });
 
-const MealButton = ({ data, color }) => {
+const MealButton = ({ data, color, navigation }) => {
     const backgroundColor = color || '#000';
 
     return (
-        <TouchableOpacity style={{...styles.container, backgroundColor: backgroundColor}}>
+        <TouchableOpacity style={{...styles.container, backgroundColor: backgroundColor}} onPress={() => navigation.navigate('MealDetails')}>
             <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
                 <ImageBackground style={{ ...styles.bgImage }} source={{ uri: data.imageUrl }} >
                     <Text style={styles.text}>
