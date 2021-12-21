@@ -42,7 +42,7 @@ const CategoryMealsScreen = ({ navigation }) => {
                 <FlatList data={displayedMeals} renderItem={({ item }) => <MealButton data={item} navigation={navigation} color={navigation.getParam('color')} />} />
             </View>
             <View style={styles.buttons}>
-                <CustomButton title='Go Back' onPress={() => navigation.goBack()} style={styles.button} />
+                <CustomButton title='Go Back' onPress={() => navigation.goBack()} />
             </View>
         </View>
     );

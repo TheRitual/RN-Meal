@@ -52,8 +52,12 @@ const styles = StyleSheet.create({
 const MealButton = ({ data, color, navigation }) => {
     const backgroundColor = color || '#000';
 
+    const onClickHandler = () => {
+        navigation.navigate({ routeName: 'MealDetails', params: { id: data.id } });
+    }
+
     return (
-        <TouchableOpacity style={{...styles.container, backgroundColor: backgroundColor}} onPress={() => navigation.navigate('MealDetails')}>
+        <TouchableOpacity style={{...styles.container, backgroundColor: backgroundColor}} onPress={() => onClickHandler()}>
             <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
                 <ImageBackground style={{ ...styles.bgImage }} source={{ uri: data.imageUrl }} >
                     <Text style={styles.text}>
