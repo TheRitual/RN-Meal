@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { MEALS } from '../../../assets/data/MEALS';
+import CustomButton from '../../common/CustomButton';
 import theme from '../../theme/default';
 import MealButton from './MealButton';
 
@@ -27,8 +28,8 @@ const CategoryMealsScreen = ({ navigation }) => {
         <View style={styles.container}>
             <Text style={styles.title}>Category - {title}</Text>
             <FlatList data={displayedMeals} renderItem={({ item }) => <MealButton data={item} color={navigation.getParam('color')} />} />
-            <Button title='Go to Meal Details' onPress={() => navigation.navigate('MealDetails')} />
-            <Button title='Go Back' onPress={() => navigation.goBack()} />
+            <CustomButton title='Go to Meal Details' onPress={() => navigation.navigate('MealDetails')} style={styles.button} />
+            <CustomButton title='Go Back' onPress={() => navigation.goBack()} style={styles.button} />
         </View>
     );
 }
