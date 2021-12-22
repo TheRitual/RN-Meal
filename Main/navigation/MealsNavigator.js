@@ -21,6 +21,10 @@ const MealsNavigator = createStackNavigator({
     },
 }, {
     headerMode: "screen",
+    defaultNavigationOptions: {
+        cardShadowEnabled: true,
+        
+    }
 });
 
 const iconGenerator = (props, icon) => {
@@ -43,14 +47,9 @@ const MealsFavTabNavigator = createMaterialBottomTabNavigator({
         },
     }
 }, {
-    tabBarOptions: {
-        activeTintColor: theme.light,
-        activeBackgroundColor: theme.primary,
-        labelPosition: "below-icon",
-        labelStyle: {
-            fontSize: 20,
-            fontFamily: 'Lato-Bold',
-        },
+    activeColor: theme.light,
+    barStyle: {
+        backgroundColor: theme.primary,
     }
 });
 
