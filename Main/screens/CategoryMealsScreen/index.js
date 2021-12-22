@@ -4,7 +4,8 @@ import { FlatList } from 'react-native-gesture-handler';
 import { MEALS } from '../../../assets/data/MEALS';
 import CustomButton from '../../common/CustomButton';
 import theme from '../../theme/default';
-import MealButton from '../../common/MealButton';
+import MealButton from '../../common/MealsList/MealButton';
+import MealsList from '../../common/MealsList';
 
 const styles = StyleSheet.create({
     title: {
@@ -14,9 +15,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Bold',
         padding: 0,
         flex: 1,
-    },
-    list: {
-        flex: 8,
     },
     buttons: {
         flexDirection: 'row',
@@ -38,9 +36,7 @@ const CategoryMealsScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Category - {title}</Text>
-            <View style={styles.list}>
-                <FlatList data={displayedMeals} renderItem={({ item }) => <MealButton data={item} navigation={navigation} color={navigation.getParam('color')} />} />
-            </View>
+            <MealsList data={displayedMeals} navigation={navigation} />
             <View style={styles.buttons}>
                 <CustomButton title='Go Back' onPress={() => navigation.goBack()} />
             </View>
