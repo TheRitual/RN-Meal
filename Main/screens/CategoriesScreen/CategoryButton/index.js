@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         shadowColor: '#000',
         shadowOpacity: 0.26,
-        shadowOffset: {width: 0, height: 2},
+        shadowOffset: { width: 0, height: 2 },
         shadowRadius: 10,
         elevation: 5,
         padding: 20,
@@ -27,7 +27,7 @@ const CategoryButton = ({ text, backgroundColor, navigation, catId }) => {
     return (
         <TouchableOpacity
             style={{ ...styles.gridItem, backgroundColor: backgroundColor }}
-            onPress={() => navigation.navigate({ routeName: 'CategoryMeals', params: { title: text, catId: catId, color: backgroundColor } })}>
+            onPress={() => navigation.navigate('CategoryMeals', { title: text, color: backgroundColor, catId: catId })}>
             <Text style={styles.categoryText} numberOfLines={2}>
                 {text}
             </Text>

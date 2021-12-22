@@ -2,17 +2,18 @@ import colorAlpha from 'color-alpha';
 import React from 'react';
 import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import theme from '../../../theme/default';
 
 const styles = StyleSheet.create({
     text: {
         fontSize: 20,
         fontFamily: "Lato",
         color: '#fff',
-        textShadowColor: colorAlpha('#fff', 0.5),
+        textShadowColor: colorAlpha(theme.light, 0.5),
         textShadowRadius: 10,
         paddingHorizontal: 15,
         paddingVertical: 15,
-        backgroundColor: colorAlpha('#000', 0.4),
+        backgroundColor: colorAlpha(theme.dark, 0.4),
     },
     details: {
         fontSize: 14,
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
     },
     mealHeader: {
         flex: 10,
-        backgroundColor: '#000',
+        backgroundColor: theme.dark,
     },
     mealDetail: {
         flex: 2,
@@ -50,14 +51,14 @@ const styles = StyleSheet.create({
 });
 
 const MealButton = ({ data, color, navigation }) => {
-    const backgroundColor = color || '#000';
+    const backgroundColor = color || theme.accent;
 
     const onClickHandler = () => {
-        navigation.navigate({ routeName: 'MealDetails', params: { id: data.id } });
+        navigation.navigate('MealDetails', { id: data.id, color: backgroundColor });
     }
 
     return (
-        <TouchableOpacity style={{...styles.container, backgroundColor: backgroundColor}} onPress={() => onClickHandler()}>
+        <TouchableOpacity style={{ ...styles.container, backgroundColor: backgroundColor }} onPress={() => onClickHandler()}>
             <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
                 <ImageBackground style={{ ...styles.bgImage }} source={{ uri: data.imageUrl }} >
                     <Text style={styles.text}>

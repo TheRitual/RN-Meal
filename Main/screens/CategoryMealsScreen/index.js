@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { MEALS } from '../../../assets/data/MEALS';
@@ -27,33 +27,30 @@ const styles = StyleSheet.create({
     }
 });
 
-const CategoryMealsScreen = ({ navigation }) => {
-    const title = navigation.getParam('title');
-    const catId = navigation.getParam('catId');
+const CategoryMealsScreen = ({ route, navigation }) => {
+    const { title, catId, color } = route.params;
+
+    useEffect(() => {
+        navigation.setOptions({
+            headerTitle: title,
+            headerTintColor: theme.dark,
+            headerStyle: {
+                backgroundColor: color,
+            },
+        });
+    }, []);
 
     const displayedMeals = MEALS.filter(meal => meal.categoryIds.indexOf(catId) >= 0);
 
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Category - {title}</Text>
-            <MealsList data={displayedMeals} navigation={navigation} />
+            <MealsList data={displayedMeals} color={color} navigation={navigation} />
             <View style={styles.buttons}>
                 <CustomButton title='Go Back' onPress={() => navigation.goBack()} />
             </View>
         </View>
     );
 }
-
-CategoryMealsScreen.navigationOptions = navigationData => {
-    const title = navigationData.navigation.getParam('title');
-    const color = navigationData.navigation.getParam('color');
-    return {
-        headerTitle: title,
-        headerTintColor: theme.dark,
-        headerStyle: {
-            backgroundColor: color,
-        },
-    }
-};
 
 export default CategoryMealsScreen;
