@@ -1,7 +1,7 @@
 import React from "react";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import { createBottomTabNavigator } from "react-navigation-tabs";
+import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailsScreen from '../screens/MealDetailsScreen';
@@ -29,7 +29,7 @@ const iconGenerator = (props, icon) => {
     );
 }
 
-const MealsFavTabNavigator = createBottomTabNavigator({
+const MealsFavTabNavigator = createMaterialTopTabNavigator({
     Meals: {
         screen: MealsNavigator,
         navigationOptions: {
@@ -47,7 +47,6 @@ const MealsFavTabNavigator = createBottomTabNavigator({
         activeTintColor: theme.light,
         activeBackgroundColor: theme.primary,
         labelPosition: "below-icon",
-        
         labelStyle: {
             fontSize: 20,
             fontFamily: 'Lato-Bold',
