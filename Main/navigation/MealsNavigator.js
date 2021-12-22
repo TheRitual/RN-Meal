@@ -10,11 +10,12 @@ import FiltersScreen from '../screens/FiltersScreen';
 import theme from '../theme/default';
 import { Ionicons } from "@expo/vector-icons";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-// import { createDrawerNavigator } from '@react-navigation/drawer';
-
-const MealsStackNavigator = createStackNavigator();
-const Tabs = createMaterialBottomTabNavigator();
+const MealsNav = createStackNavigator();
+const FavoritesNav = createStackNavigator();
+const TabsNav = createMaterialBottomTabNavigator();
+//const DrawerTab = createMaterialBottomTabNavigator();
 
 const iconGenerator = (props, icon) => {
     return (
@@ -35,23 +36,32 @@ const navigatorsOptions = {
 
 const MealsNavigator = () => {
     return (
-        <MealsStackNavigator.Navigator initialRouteName="Categories">
-            <MealsStackNavigator.Screen name="Categories" component={CategoriesScreen} options={navigatorsOptions} />
-            <MealsStackNavigator.Screen name="CategoryMeals" component={CategoryMealsScreen} options={navigatorsOptions} />
-            <MealsStackNavigator.Screen name="MealDetails" component={MealDetailsScreen} options={navigatorsOptions} />
-        </MealsStackNavigator.Navigator>
+        <MealsNav.Navigator initialRouteName="Categories">
+            <MealsNav.Screen name="Categories" component={CategoriesScreen} options={navigatorsOptions} />
+            <MealsNav.Screen name="CategoryMeals" component={CategoryMealsScreen} options={navigatorsOptions} />
+            <MealsNav.Screen name="MealDetails" component={MealDetailsScreen} options={navigatorsOptions} />
+        </MealsNav.Navigator>
+    );
+}
+
+const FavoritesNavigator = () => {
+    return (
+        <FavoritesNav.Navigator initialRouteName="Categories">
+            <FavoritesNav.Screen name="Favorites" component={FavoritesScreen} options={navigatorsOptions} />
+            <FavoritesNav.Screen name="MealDetails" component={MealDetailsScreen} options={navigatorsOptions} />
+        </FavoritesNav.Navigator>
     );
 }
 
 const MealsFavNavigator = () => {
     return (
-        <Tabs.Navigator
+        <TabsNav.Navigator
             initialRouteName="Meals"
             activeColor={theme.light}
             inactiveColor="#898989"
             shifting={true}
         >
-            <Tabs.Screen
+            <TabsNav.Screen
                 name="Meals"
                 component={MealsNavigator}
                 options={{
@@ -61,9 +71,9 @@ const MealsFavNavigator = () => {
                     tabBarLabel: 'Meals',
                     tabBarColor: theme.primary,
                 }} />
-            <Tabs.Screen
-                name="Favorites"
-                component={FavoritesScreen}
+            <TabsNav.Screen
+                name="YourFavorites"
+                component={FavoritesNavigator}
                 options={{
                     ...navigatorsOptions,
                     tabBarIcon: (tabInfo) => iconGenerator(tabInfo, 'ios-star'),
@@ -71,7 +81,7 @@ const MealsFavNavigator = () => {
                     tabBarColor: theme.accent,
                 }}
             />
-        </Tabs.Navigator>
+        </TabsNav.Navigator>
     );
 }
 
@@ -86,30 +96,6 @@ const FavoritesNavigator = createStackNavigator({
     },
 }, stackNavigatorsParams);
 
-
-
-const MealsFavTabNavigator = createMaterialBottomTabNavigator({
-    Meals: {
-        screen: MealsNavigator,
-        navigationOptions: {
-            tabBarIcon: (tabInfo) => iconGenerator(tabInfo, 'ios-restaurant'),
-            tabBarColor: theme.primary,
-        },
-    },
-    Favorites: {
-        screen: FavoritesNavigator,
-        navigationOptions: {
-            tabBarIcon: (tabInfo) => iconGenerator(tabInfo, 'ios-star'),
-            tabBarColor: theme.accent,
-        },
-    }
-}, {
-    activeColor: theme.light,
-    shifting: true,
-    barStyle: {
-        backgroundColor: theme.primary,
-    }
-});
 
 const FiltersNavigator = createStackNavigator({
     Filters: FiltersScreen,
