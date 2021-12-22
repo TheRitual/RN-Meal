@@ -1,13 +1,13 @@
 import React from "react";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailsScreen from '../screens/MealDetailsScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import theme from '../theme/default';
 import { Ionicons } from "@expo/vector-icons";
+import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 
 const MealsNavigator = createStackNavigator({
     Categories: {
@@ -29,7 +29,7 @@ const iconGenerator = (props, icon) => {
     );
 }
 
-const MealsFavTabNavigator = createMaterialTopTabNavigator({
+const MealsFavTabNavigator = createMaterialBottomTabNavigator({
     Meals: {
         screen: MealsNavigator,
         navigationOptions: {
