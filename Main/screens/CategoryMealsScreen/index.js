@@ -4,7 +4,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { MEALS } from '../../../assets/data/MEALS';
 import CustomButton from '../../common/CustomButton';
 import theme from '../../theme/default';
-import MealButton from './MealButton';
+import MealButton from '../../common/MealButton';
 
 const styles = StyleSheet.create({
     title: {
