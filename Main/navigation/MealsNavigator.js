@@ -9,14 +9,20 @@ import FavoritesScreen from '../screens/FavoritesScreen';
 import FiltersScreen from '../screens/FiltersScreen';
 import theme from '../theme/default';
 import { Ionicons } from "@expo/vector-icons";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
-
-// import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 // import { createDrawerNavigator } from '@react-navigation/drawer';
 
 const MealsStackNavigator = createStackNavigator();
+const Tabs = createMaterialBottomTabNavigator();
 
-const stackNavigatorsOptions = {
+const iconGenerator = (props, icon) => {
+    return (
+        <Ionicons name={icon} size={25} color={props.color} />
+    );
+}
+
+const navigatorsOptions = {
     headerMode: "screen",
     defaultNavigationOptions: {
         cardShadowEnabled: true,
@@ -28,12 +34,44 @@ const stackNavigatorsOptions = {
 }
 
 const MealsNavigator = () => {
-    return(
+    return (
         <MealsStackNavigator.Navigator initialRouteName="Categories">
-            <MealsStackNavigator.Screen name="Categories" component={CategoriesScreen} options={stackNavigatorsOptions} />
-            <MealsStackNavigator.Screen name="CategoryMeals" component={CategoryMealsScreen} options={stackNavigatorsOptions} />
-            <MealsStackNavigator.Screen name="MealDetails" component={MealDetailsScreen} options={stackNavigatorsOptions} />
+            <MealsStackNavigator.Screen name="Categories" component={CategoriesScreen} options={navigatorsOptions} />
+            <MealsStackNavigator.Screen name="CategoryMeals" component={CategoryMealsScreen} options={navigatorsOptions} />
+            <MealsStackNavigator.Screen name="MealDetails" component={MealDetailsScreen} options={navigatorsOptions} />
         </MealsStackNavigator.Navigator>
+    );
+}
+
+const MealsFavNavigator = () => {
+    return (
+        <Tabs.Navigator
+            initialRouteName="Meals"
+            activeColor={theme.light}
+            inactiveColor="#898989"
+            shifting={true}
+        >
+            <Tabs.Screen
+                name="Meals"
+                component={MealsNavigator}
+                options={{
+                    ...navigatorsOptions,
+                    headerShown: false,
+                    tabBarIcon: (tabInfo) => iconGenerator(tabInfo, 'ios-restaurant'),
+                    tabBarLabel: 'Meals',
+                    tabBarColor: theme.primary,
+                }} />
+            <Tabs.Screen
+                name="Favorites"
+                component={FavoritesScreen}
+                options={{
+                    ...navigatorsOptions,
+                    tabBarIcon: (tabInfo) => iconGenerator(tabInfo, 'ios-star'),
+                    tabBarLabel: 'Your Favorites',
+                    tabBarColor: theme.accent,
+                }}
+            />
+        </Tabs.Navigator>
     );
 }
 
@@ -49,11 +87,6 @@ const FavoritesNavigator = createStackNavigator({
 }, stackNavigatorsParams);
 
 
-const iconGenerator = (props, icon) => {
-    return (
-        <Ionicons name={icon} size={25} color={props.tintColor} />
-    );
-}
 
 const MealsFavTabNavigator = createMaterialBottomTabNavigator({
     Meals: {
@@ -92,7 +125,7 @@ const MainNavigator =  createDrawerNavigator({
 const MainNavigator = () => {
     return (
         <NavigationContainer>
-            <MealsNavigator />
+            <MealsFavNavigator />
         </NavigationContainer>
     );
 }
