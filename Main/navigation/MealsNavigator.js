@@ -100,6 +100,7 @@ const LeftMenu = () => {
                 options={{
                     ...navigatorsOptions,
                     headerShown: false,
+                    swipeEnabled: false,
                     drawerLabel: 'Meals',
                 }}
             />
@@ -108,6 +109,7 @@ const LeftMenu = () => {
                 component={FiltersNavigator}
                 options={{
                     ...navigatorsOptions,
+                    swipeEnabled: false,
                     headerShown: false,
                 }}
             />
