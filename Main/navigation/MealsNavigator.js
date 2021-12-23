@@ -10,6 +10,7 @@ import theme from '../theme/default';
 import { Ionicons } from "@expo/vector-icons";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import alpha from "color-alpha";
 
 const StackNav = createStackNavigator();
 const TabsNav = createMaterialBottomTabNavigator();
@@ -93,7 +94,26 @@ const MealsFavNavigator = () => {
 
 const LeftMenu = () => {
     return (
-        <DrawerNav.Navigator>
+        <DrawerNav.Navigator
+            screenOptions={{
+                drawerStyle: {
+                    backgroundColor: alpha(theme.light, 0.95),
+                    width: 200,
+                    borderBottomRightRadius: 20,
+                    borderTopRightRadius: 20,
+                },
+                drawerItemStyle: {
+                    height: 80,
+                    justifyContent: 'center',
+                    borderRadius: 20,
+                    padding: 10,
+                },
+                drawerLabelStyle: {
+                    fontFamily: 'Lato-Bold',
+                    fontSize: 17,
+                },
+                drawerActiveTintColor: theme.primary,
+            }}>
             <DrawerNav.Screen
                 name="Browser"
                 component={MealsFavNavigator}
@@ -102,6 +122,7 @@ const LeftMenu = () => {
                     headerShown: false,
                     swipeEnabled: false,
                     drawerLabel: 'Meals',
+                    drawerIcon: (info) => iconGenerator(info, 'fast-food-outline'),
                 }}
             />
             <DrawerNav.Screen
@@ -111,6 +132,8 @@ const LeftMenu = () => {
                     ...navigatorsOptions,
                     swipeEnabled: false,
                     headerShown: false,
+                    
+                    drawerIcon: (info) => iconGenerator(info, 'filter-outline'),
                 }}
             />
         </DrawerNav.Navigator>
