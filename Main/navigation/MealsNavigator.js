@@ -97,7 +97,7 @@ function MyDrawer() {
     return (
         <Drawer.Navigator>
             <Drawer.Screen
-                name="Main"
+                name="Meals"
                 component={MealsFavNavigator}
                 options={{
                     ...navigatorsOptions,

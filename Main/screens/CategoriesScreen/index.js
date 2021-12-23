@@ -3,24 +3,16 @@ import { View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { CATEGORIES } from '../../../assets/data/CATEGORIES'
 import CategoryButton from './CategoryButton';
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import MyHeaderButton from '../../common/HeaderButton';
 import theme from '../../theme/default';
-
-const leftElement = () => {
-    return (
-        <HeaderButtons HeaderButtonComponent={MyHeaderButton}>
-            <Item title='Add to Favorites' iconName='ios-menu' onPress={() => console.log("Otwiera Menu")} />
-        </HeaderButtons>
-    );
-}
+import MenuButton from '../../common/MenuButton';
 
 const CategoriesScreen = ({ navigation }) => {
+
     useEffect(() => {
         navigation.setOptions({
             headerTintColor: theme.light,
             headerTitle: 'Meal Categories',
-            headerLeft: leftElement,
+            headerLeft: () => MenuButton(navigation),
         });
     }, []);
     return (

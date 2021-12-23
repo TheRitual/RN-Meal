@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import MenuButton from '../../common/MenuButton';
 import theme from '../../theme/default';
 
 const styles = StyleSheet.create({
@@ -11,21 +12,23 @@ const styles = StyleSheet.create({
 });
 
 
-const FiltersScreen = () => {
+const FiltersScreen = ({ navigation }) => {
+    useEffect(() => {
+        navigation.setOptions({
+            headerTitle: 'Filters',
+            headerTintColor: theme.light,
+            headerStyle: {
+                backgroundColor: theme.primary,
+            },
+            headerLeft: () => MenuButton(navigation),
+        });
+    }, []);
+
     return (
         <View>
             <Text>Filters Screen</Text>
         </View>
     );
 }
-
-FiltersScreen.navigationOptions = {
-    headerTitle: 'Filters',
-    headerTintColor: theme.header.tint,
-    headerStyle: {
-        backgroundColor: theme.primary,
-    },
-};
-
 
 export default FiltersScreen;

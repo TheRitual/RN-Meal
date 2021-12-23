@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import theme from '../../theme/default';
 import { MEALS } from '../../../assets/data/MEALS';
 import MealsList from '../../common/MealsList';
+import MenuButton from '../../common/MenuButton';
 
 const styles = StyleSheet.create({
     container: {
@@ -17,10 +18,11 @@ const FavoritesScreen = ({ navigation }) => {
     useEffect(() => {
         navigation.setOptions({
             headerTitle: 'Your Favorites',
-            headerTintColor: theme.dark,
+            headerTintColor: theme.light,
             headerStyle: {
                 backgroundColor: theme.accent,
             },
+            headerLeft: () => MenuButton(navigation),
         });
     }, []);
 
