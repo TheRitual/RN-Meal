@@ -1,7 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
-
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailsScreen from '../screens/MealDetailsScreen';
@@ -12,10 +11,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-const MealsNav = createStackNavigator();
-const FavoritesNav = createStackNavigator();
+const StackNav = createStackNavigator();
 const TabsNav = createMaterialBottomTabNavigator();
-//const DrawerTab = createMaterialBottomTabNavigator();
 
 const iconGenerator = (props, icon) => {
     return (
@@ -36,20 +33,28 @@ const navigatorsOptions = {
 
 const MealsNavigator = () => {
     return (
-        <MealsNav.Navigator initialRouteName="Categories">
-            <MealsNav.Screen name="Categories" component={CategoriesScreen} options={navigatorsOptions} />
-            <MealsNav.Screen name="CategoryMeals" component={CategoryMealsScreen} options={navigatorsOptions} />
-            <MealsNav.Screen name="MealDetails" component={MealDetailsScreen} options={navigatorsOptions} />
-        </MealsNav.Navigator>
+        <StackNav.Navigator initialRouteName="Categories">
+            <StackNav.Screen name="Categories" component={CategoriesScreen} options={navigatorsOptions} />
+            <StackNav.Screen name="CategoryMeals" component={CategoryMealsScreen} options={navigatorsOptions} />
+            <StackNav.Screen name="MealDetails" component={MealDetailsScreen} options={navigatorsOptions} />
+        </StackNav.Navigator>
     );
 }
 
 const FavoritesNavigator = () => {
     return (
-        <FavoritesNav.Navigator initialRouteName="Categories">
-            <FavoritesNav.Screen name="Favorites" component={FavoritesScreen} options={navigatorsOptions} />
-            <FavoritesNav.Screen name="MealDetails" component={MealDetailsScreen} options={navigatorsOptions} />
-        </FavoritesNav.Navigator>
+        <StackNav.Navigator initialRouteName="Favorites">
+            <StackNav.Screen name="Favorites" component={FavoritesScreen} options={navigatorsOptions} />
+            <StackNav.Screen name="MealDetails" component={MealDetailsScreen} options={navigatorsOptions} />
+        </StackNav.Navigator>
+    );
+}
+
+const FiltersNavigator = () => {
+    return (
+        <StackNav.Navigator initialRouteName="Filters">
+            <StackNav.Screen name="Filters" component={FiltersScreen} options={navigatorsOptions} />
+        </StackNav.Navigator>
     );
 }
 
@@ -85,33 +90,36 @@ const MealsFavNavigator = () => {
     );
 }
 
-/*
 
-const FavoritesNavigator = createStackNavigator({
-    Favorites: {
-        screen: FavoritesScreen,
-    },
-    MealDetails: {
-        screen: MealDetailsScreen,
-    },
-}, stackNavigatorsParams);
+const Drawer = createDrawerNavigator();
 
-
-const FiltersNavigator = createStackNavigator({
-    Filters: FiltersScreen,
-});
-
-const MainNavigator =  createDrawerNavigator({
-    MealFavs: MealsFavTabNavigator,
-    Filters: FiltersNavigator,
-});
-
-*/
+function MyDrawer() {
+    return (
+        <Drawer.Navigator>
+            <Drawer.Screen
+                name="Main"
+                component={MealsFavNavigator}
+                options={{
+                    ...navigatorsOptions,
+                    headerShown: false,
+                }}
+            />
+            <Drawer.Screen
+                name="Filters"
+                component={FiltersNavigator}
+                options={{
+                    ...navigatorsOptions,
+                    headerShown: false,
+                }}
+            />
+        </Drawer.Navigator>
+    );
+}
 
 const MainNavigator = () => {
     return (
         <NavigationContainer>
-            <MealsFavNavigator />
+            <MyDrawer />
         </NavigationContainer>
     );
 }
