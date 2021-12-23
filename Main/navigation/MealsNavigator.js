@@ -13,6 +13,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 const StackNav = createStackNavigator();
 const TabsNav = createMaterialBottomTabNavigator();
+const DrawerNav = createDrawerNavigator();
 
 const iconGenerator = (props, icon) => {
     return (
@@ -52,8 +53,8 @@ const FavoritesNavigator = () => {
 
 const FiltersNavigator = () => {
     return (
-        <StackNav.Navigator initialRouteName="Filters">
-            <StackNav.Screen name="Filters" component={FiltersScreen} options={navigatorsOptions} />
+        <StackNav.Navigator initialRouteName="FiltersList">
+            <StackNav.Screen name="FiltersList" component={FiltersScreen} options={navigatorsOptions} />
         </StackNav.Navigator>
     );
 }
@@ -90,21 +91,19 @@ const MealsFavNavigator = () => {
     );
 }
 
-
-const Drawer = createDrawerNavigator();
-
-function MyDrawer() {
+const LeftMenu = () => {
     return (
-        <Drawer.Navigator>
-            <Drawer.Screen
-                name="Meals"
+        <DrawerNav.Navigator>
+            <DrawerNav.Screen
+                name="Browser"
                 component={MealsFavNavigator}
                 options={{
                     ...navigatorsOptions,
                     headerShown: false,
+                    drawerLabel: 'Meals',
                 }}
             />
-            <Drawer.Screen
+            <DrawerNav.Screen
                 name="Filters"
                 component={FiltersNavigator}
                 options={{
@@ -112,14 +111,14 @@ function MyDrawer() {
                     headerShown: false,
                 }}
             />
-        </Drawer.Navigator>
+        </DrawerNav.Navigator>
     );
 }
 
 const MainNavigator = () => {
     return (
         <NavigationContainer>
-            <MyDrawer />
+            <LeftMenu />
         </NavigationContainer>
     );
 }
