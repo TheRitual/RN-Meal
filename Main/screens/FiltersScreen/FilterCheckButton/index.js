@@ -39,13 +39,13 @@ const FilterCheckButton = (props) => {
 
     return (
         <TouchableOpacity style={{ ...styles.container, ...props.style }} onPress={props.onPress}>
-            <View style={styles.checkBox}>
-                <Ionicons name={isChecked ? "ios-checkmark-circle-sharp" : "ellipse-outline"} size={24} color={isChecked ? theme.accent : theme.dark} />
-            </View>
             <View style={styles.textBox}>
                 <Text style={{ ...styles.buttonText, ...props.textStyle }}>
                     {props.text || props.children || ""}
                 </Text>
+            </View>
+            <View style={styles.checkBox}>
+                <Ionicons name={isChecked ? "ios-checkmark-circle-sharp" : "ellipse-outline"} size={24} color={isChecked ? theme.accent : theme.dark} />
             </View>
         </TouchableOpacity>
     );

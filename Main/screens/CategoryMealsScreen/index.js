@@ -47,7 +47,7 @@ const CategoryMealsScreen = ({ route, navigation }) => {
             <Text style={styles.title}>Category - {title}</Text>
             <MealsList data={displayedMeals} color={color} navigation={navigation} />
             <View style={styles.buttons}>
-                <CustomButton title='Go Back' onPress={() => navigation.goBack()} />
+                <CustomButton title='Go Back' style={{ backgroundColor: color }} textStyle={{ color: theme.dark }} onPress={() => navigation.goBack()} />
             </View>
         </View>
     );
