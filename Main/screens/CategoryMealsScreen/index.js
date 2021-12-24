@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
-import { MEALS } from '../../../assets/data/MEALS';
 import CustomButton from '../../common/CustomButton';
 import theme from '../../theme/default';
-import MealButton from '../../common/MealsList/MealButton';
 import MealsList from '../../common/MealsList';
+import { useSelector } from 'react-redux';
+import { selectFilteredMeals } from '../../store/reducers/mealsSlice';
 
 const styles = StyleSheet.create({
     title: {
@@ -39,6 +38,8 @@ const CategoryMealsScreen = ({ route, navigation }) => {
             },
         });
     }, []);
+
+    const MEALS = useSelector(selectFilteredMeals);
 
     const displayedMeals = MEALS.filter(meal => meal.categoryIds.indexOf(catId) >= 0);
 
