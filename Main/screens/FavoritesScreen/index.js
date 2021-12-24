@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import theme from '../../theme/default';
-import { MEALS } from '../../../assets/data/MEALS';
 import MealsList from '../../common/MealsList';
 import MenuButton from '../../common/MenuButton';
+import { useSelector } from 'react-redux';
+import { selectFilteredMeals } from '../../store/reducers/mealsSlice';
 
 const styles = StyleSheet.create({
     container: {
@@ -25,6 +26,7 @@ const FavoritesScreen = ({ navigation }) => {
             headerLeft: () => MenuButton(navigation),
         });
     }, []);
+    const MEALS = useSelector(selectFilteredMeals);
 
     const displayedMeals = MEALS.filter(meal => meal.id === 'm1' || meal.id === 'm2');
 

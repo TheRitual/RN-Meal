@@ -2,9 +2,10 @@ import colorAlpha from 'color-alpha';
 import React, { useEffect } from 'react';
 import { ScrollView, Text, View, StyleSheet, ImageBackground } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { MEALS } from '../../../assets/data/MEALS';
+import { useSelector } from 'react-redux';
 import CustomButton from '../../common/CustomButton';
 import MyHeaderButton from '../../common/HeaderButton';
+import { selectFilteredMeals } from '../../store/reducers/mealsSlice';
 import theme from '../../theme/default';
 
 const styles = StyleSheet.create({
@@ -80,6 +81,7 @@ const rightElement = () => {
 
 const MealDetailsScreen = ({ navigation, route }) => {
     const { id, color } = route.params;
+    const MEALS = useSelector(selectFilteredMeals);
     const mealData = MEALS.find(meal => meal.id === id);
 
     useEffect(() => {
